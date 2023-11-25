@@ -1,0 +1,57 @@
+:root {
+    --foreground: #fff;
+    --primary-lighten: #ffa332;
+}
+
+@media (max-width: 768px){
+    .paper {
+        -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,.05), 0 0 4px 0 rgba(0,0,0,.05);
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,.05), 0 0 4px 0 rgba(0,0,0,.05);
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .aside__panel {
+        margin-bottom: 10px;
+    }
+}
+
+.paper {
+    background: #fff;
+    background: var(--foreground);
+    border-radius: 4px;
+}
+
+.aside__panel {
+    background-color: #fff;
+    background-color: var(--foreground);
+    overflow: hidden;
+    margin-bottom: 17px;
+    border-radius: 2px;
+}
+
+.aside__title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.aside__title-inner {
+    padding: 10px 14px;
+    display: block;
+    border-bottom: 2px solid #ffa332;
+    border-bottom: solid 2px var(--primary-lighten);
+}
+
+@media (max-width: 768px){
+    .aside__content {
+        padding: 10px 0;
+    }
+}
+
+.aside__content {
+    padding: 10px 14px;
+}
