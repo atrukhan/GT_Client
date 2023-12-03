@@ -1,30 +1,39 @@
-import React, {useEffect, useContext} from 'react'
+import React, {useEffect, useContext, useState} from 'react'
+import Aside from '../Aside';
 import './style.css'
-import AsidePanel from '../AsidePanel'
-import TopUser from '../TopUser'
 import { Context } from '../../index';
+import Library from '../Libraries';
 
 const Page = () => {
 
   const store = useContext(Context)
+  const [update, setUpdate] = useState(1);
 
   useEffect(() => {
-      store.getTopUsers()
+    //   store.getTopUsers()
+    store.setCallbackMainComponent((v) => {setUpdate(v)})
   }, [])
 
 
+  const loadMainComponent = () => {
+    switch (store.mainComponent) {
+      case store.mainComponents.main:
+        return "";
+      case store.mainComponents.library:
+        return <Library/>;  
+    }
+  }
+
   return (
-    <div className='page'>
-        <div className='page__inner'>
-            <div className='container container_offset'>
-                <div className='aside aside_right home-sidebar'>
-                    <AsidePanel styleName={'top-user-list'}> 
-                      {store.topUsers.map((object, i) => <TopUser nickname={object.nikname} rank={i+1}  key={i} />)}
-                    </AsidePanel>
-                </div>
-            </div>
-        </div>
+    <div className='page__container'>
+      <Aside/>
+      <main>
+        {loadMainComponent()}
+      </main>
+      
     </div>
+    
+    
   )
 }
 

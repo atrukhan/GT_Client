@@ -11,11 +11,51 @@ export default class Store {
         roles:[],
     }
 
-    authType = 'login'
+    // libraries = [{}];
+    libraries = [{
+        name:"Clothes",
+        cardsCount: 120,
+        percent: 0
+    }, {
+        name:"Emotions",
+        cardsCount: 100,
+        percent: 21
+    }, {
+        name:"War",
+        cardsCount: 130,
+        percent: 81
+    }]
+
+    authType = 'login';
 
     isAuth = false;
 
-    topUsers = []
+    topUsers = [];
+
+    mainComponents = {
+        main: 1,
+        chat: 2,
+        library: 3,
+    }
+
+    mainComponent = this.mainComponents.main;
+
+    isDarkMode = false;
+
+    callbackDarkMode = [() => {},];
+    callbackMainComponent = [() => {},];
+
+    setCallbackDarkMode(callback){
+        this.callbackDarkMode = [...this.callbackDarkMode, callback];
+    }
+    setCallbackMainComponent(callback){
+        this.callbackMainComponent = [...this.callbackMainComponent, callback];
+    }
+
+    setMainComponent(mainComponent){
+        this.mainComponent = mainComponent;
+        this.callbackMainComponent.forEach((element) => element(this.mainComponent));
+    }
 
 
     constructor(){
@@ -36,6 +76,19 @@ export default class Store {
 
     setTopUsers(users){
         this.topUsers = users
+    }
+
+    setDarkMode(isDarkMode){
+        this.isDarkMode = isDarkMode
+        this.callbackDarkMode.forEach((element) => element(this.isDarkMode));
+    }
+
+    setLibraries(libraries){
+        this.libraries = libraries
+    }
+
+    addLibrary(library){
+        this.libraries = [...this.libraries, library]
     }
 
     async login(email, password){

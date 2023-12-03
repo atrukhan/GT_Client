@@ -1,14 +1,24 @@
-import React from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import Header from '../../components/Header'
-import Wrapper from '../../components/Wrapper'
 import Page from '../Page'
+import { Context } from '../../index'
 
 const Main = () => {
+
+  const store = useContext(Context)
+  const [update, setUpdate] = useState(false);
+
+  useEffect(() => {
+    store.setCallbackDarkMode((v) => {setUpdate(v)})
+  }, [])
+
   return (
-    <Wrapper>
-        <Header/>
-        <Page />
-    </Wrapper>
+    <div className={store.isDarkMode ? 'body dark-mode-variables' : 'body'}>
+      <div className='container'>
+          <Header/>
+          <Page />
+      </div>
+    </div>
   )
 }
 
