@@ -1,13 +1,13 @@
 import React from 'react'
 import './style.css'
 
-const LibraryItem = ({name, count, percent}) => {
+const LibrariesItem = ({name, count, percent, handleClick, id}) => {
   return (
-    <div>
-        <div className="status" >
+
+        <div className="status" onClick={() => {handleClick(id)}}>
             <div className="info">
-                <h3>{name}</h3>
-                <h1>{count} Card</h1>
+                <h1>{name}</h1>
+                <h2>{count} Cards</h2>
             </div>
             <div className="progresss">
                 <svg>
@@ -18,8 +18,7 @@ const LibraryItem = ({name, count, percent}) => {
                 </div>
             </div>
         </div>
-    </div>
   )
 }
 
-export default LibraryItem
+export default LibrariesItem

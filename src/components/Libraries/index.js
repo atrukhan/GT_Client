@@ -1,39 +1,48 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import './style.css'
 import { Context } from '../../index';
 import LibraryItem from '../LibrariesItem'
-import LibraryForm from '../LibrariesForm'
+import AddLibrary from '../AddLibrary'
+import Card from '../Cards';
 
-const Library = () => {
+const Libraries = ({handleOpenLibrary}) => {
 
-    const [formVisability, setFormVisability] = useState(false);
+
+    
+    const [libraryId, setLibraryId] = useState(-1)
+
+    
     const store = useContext(Context)
 
-    const handleAddClick = () => {
-        setFormVisability(!formVisability)
+    useEffect(() => {
+       
+        if (store.isAuth == true){
+            store.getUserLibs((id) => {handleShowCards(id)});
+        }
+        
+    },[]);
+
+    const handleShowCards = (id) => {
+        setLibraryId(id)
     }
 
     return (
     <div className='main'>
         <h1>Libraries</h1>
-        <div className="analyse">
-            {formVisability ? (
-                <LibraryForm handleClick={handleAddClick}/>
-            ) : ( 
-                <div className="add" onClick={() => {handleAddClick()}}>
-                    <div className="plus">
-                        <h1 className="add_plus">+</h1>
-                    </div>
-                </div>
-            )}
-            {store.libraries.map((element, index) => {
-              return ( <LibraryItem name={element.name} count={element.cardsCount} percent={element.percent} key={index} />)  
-            })}
-         
+        
+        <div className="analyse analyse_lib">
+            <AddLibrary callback={(id) => {handleShowCards(id)}}/>
+            
+            {
+            store.libraries?.map((element) => {
+              return ( <LibraryItem name={element.title} count={element.cardsCount} percent={element.learnedPercentage} handleClick={handleOpenLibrary} id={element.id} key={element.id} />)  
+            })
+            }
+       
         </div>
         
     </div>
     )
 }
 
-export default Library
+export default Libraries

@@ -10,6 +10,7 @@ const Main = () => {
 
   useEffect(() => {
     store.setCallbackDarkMode((v) => {setUpdate(v)})
+    store.getDefaultLibs();
   }, [])
 
   return (

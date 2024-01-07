@@ -11,20 +11,76 @@ export default class Store {
         roles:[],
     }
 
-    // libraries = [{}];
-    libraries = [{
-        name:"Clothes",
-        cardsCount: 120,
-        percent: 0
-    }, {
-        name:"Emotions",
-        cardsCount: 100,
-        percent: 21
-    }, {
-        name:"War",
-        cardsCount: 130,
-        percent: 81
-    }]
+    defLib = null;
+    libraries = null;
+    // libraries = [{
+    //     id: 1,
+    //     title:"Cloth33-es2",
+    //     cardsCount: 120,
+    //     percent: 0,
+    //     cards: [{
+    //         id: 1,
+    //         value: "Elephant",
+    //         translation:"Слон",
+    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
+    //     },{
+    //         id: 2,
+    //         value: "Elephant",
+    //         translation:"Слон",
+    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
+    //     },{
+    //         id: 3,
+    //         value: "Elephant",
+    //         translation:"Слон",
+    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
+    //     }]
+    // }, {
+    //     id: 2,
+    //     name:"Emotions",
+    //     cardsCount: 100,
+    //     percent: 21,
+    //     cards: [{
+    //         id: 1,
+    //         value: "Elephant",
+    //         translation:"Слон",
+    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
+    //     },{
+    //         id: 2,
+    //         value: "Elephant",
+    //         translation:"Слон",
+    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
+    //     },{
+    //         id: 3,
+    //         value: "Elephant",
+    //         translation:"Слон",
+    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
+    //     }]
+    // }, {
+    //     id: 3,
+    //     name:"War",
+    //     cardsCount: 130,
+    //     percent: 81,
+    //     cards: [{
+    //         id: 1,
+    //         value: "Elephant",
+    //         translation:"Слон",
+    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
+    //     },{
+    //         id: 2,
+    //         value: "Elephant",
+    //         translation:"Слон",
+    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
+    //     },{
+    //         id: 3,
+    //         value: "Elephant",
+    //         translation:"Слон",
+    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
+    //     }]
+    // }]
+
+    cards = null;
+
+    currentLib = -1
 
     authType = 'login';
 
@@ -129,12 +185,65 @@ export default class Store {
         }
     }
 
-   async getTopUsers(){
+   async getDefaultLibs(callback){
         try {
-            const response = await axios.get('/api/users/top')
-            this.setTopUsers(null)
+            const response = await axios.post('/api/user/def_libs')
+            this.defLib = response.data
+            this.libraries = response.data
+            this.currentLib -= 1
+            if(callback != undefined)
+                callback(this.currentLib)
         } catch (e) {
             console.log(e.response?.data?.message)
         }
    }
+
+    async getUserLibs(callback){
+        try {
+            const response = await axios.post('/api/user/user_libs')
+            this.libraries = [...this.defLib , ...response.data]
+            
+            this.currentLib -= 1
+            console.log(this.currentLib)
+            callback(this.currentLib)
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+
+    async createLib(title){
+        try {
+            const response = await axios.post('/api/user/user_lib_create', {"title": title})
+            if(response.status == 200)
+                this.libraries = [...this.libraries, {"id": response.data.id, "title": title, "learnedPercentage": response.data.learnedPercentage, "code":response.data.code, "cardsCount": response.data.cardsCount, "def": response.data.isDef}]
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+
+    async createCard(libId, value, translation){
+        try {
+            const response = await axios.post(`/api/user/user_lib_card_create/${libId}`, {"value": value, "transcription": null, "translation": translation, "example": null})
+            if(response.status == 200)
+                this.cards = [...this.cards, {"id": response.data.id, "value": value, "transcription": null, "translation": translation, "example": null}]
+    
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+
+    async getCards(libId, callback){
+        try {
+            let response;
+            if(this.libraries.filter((el) => el.id == libId)[0].def == false){
+                response = await axios.post(`/api/user/user_lib_cards/${libId}`)
+            }else{
+               response = await axios.post(`/api/user/def_lib_cards/${libId}`) 
+            }
+            this.cards = response.data;
+            callback()
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
 }

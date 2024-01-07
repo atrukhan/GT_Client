@@ -2,7 +2,7 @@ import React, {useEffect, useContext, useState} from 'react'
 import Aside from '../Aside';
 import './style.css'
 import { Context } from '../../index';
-import Library from '../Libraries';
+import LibraryTab from '../LibraryTab';
 
 const Page = () => {
 
@@ -20,7 +20,7 @@ const Page = () => {
       case store.mainComponents.main:
         return "";
       case store.mainComponents.library:
-        return <Library/>;  
+        return <LibraryTab/>;  
     }
   }
 

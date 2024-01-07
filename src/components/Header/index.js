@@ -1,4 +1,5 @@
 import React, {useContext, useRef, useEffect, useState, useLayoutEffect} from 'react'
+import {Link} from 'react-router-dom'
 import './style.css'
 import {useNavigate} from 'react-router-dom'
 import 'font-awesome/css/font-awesome.min.css'
@@ -34,6 +35,10 @@ const Header = () => {
       store.setDarkMode(!store.isDarkMode)
     }
 
+    const handleSignInClick = () => {
+
+    }
+
     return (
       <div className='header'>
         <div className="toggle" >
@@ -55,15 +60,23 @@ const Header = () => {
                 <span className={store.isDarkMode ? 'active' : ''}><MdDarkMode/></span>
             </div>
 
-            <div className="profile">
-                <div className="info">
-                    <p>Hey, <b>Egor</b></p>
-                    <small className="text-muted">Admin</small>
+
+            {store.isAuth ? (
+                <div className="profile">
+                    <div className="info">
+                        <p>Hey, <b>{store.user.nickname}</b></p>
+                        <small className="text-muted">{store.user.role}</small>
+                    </div>
+                    <div className="profile-photo">
+                        <img src="/default_avatar.jpg"/>
+                    </div>
                 </div>
-                <div className="profile-photo">
-                    <img src="/avatar.jpg"/>
-                </div>
-            </div>
+            ) : (
+                <div className="profile">
+                    <Link to="/auth"><button className="button_avatar">Sign In</button></Link>
+                </div>                   
+            )}
+           
         </div>
       </div>
       
