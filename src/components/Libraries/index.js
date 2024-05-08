@@ -1,47 +1,51 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import './style.css'
 import { Context } from '../../index';
 import LibraryItem from '../LibrariesItem'
 import AddLibrary from '../AddLibrary'
-import Card from '../Cards';
+import axios from "../../api/axios";
 
-const Libraries = ({handleOpenLibrary}) => {
+const Libraries = ({ title, isUserLibs, handleOpenLibrary }) => {
 
-
-    
     const [libraryId, setLibraryId] = useState(-1)
+    const [libraries, setLibraries] = useState(null)
 
-    
-    const store = useContext(Context)
+    const getUserLibs = async () => {
+        try {
+            const response = await axios.post('/api/user/user_libs')
+            return response.data
+        } catch (e) {
+            console.log(e.response?.data?.message)
+            return null
+        }
+    }
 
     useEffect(() => {
-       
-        if (store.isAuth == true){
-            store.getUserLibs((id) => {handleShowCards(id)});
-        }
-        
-    },[]);
+   
+        getUserLibs().then(result => setLibraries(result))
+
+    }, []);
 
     const handleShowCards = (id) => {
         setLibraryId(id)
     }
 
+
     return (
-    <div className='main'>
-        <h1>Libraries</h1>
-        
-        <div className="analyse analyse_lib">
-            <AddLibrary callback={(id) => {handleShowCards(id)}}/>
-            
-            {
-            store.libraries?.map((element) => {
-              return ( <LibraryItem name={element.title} count={element.cardsCount} percent={element.learnedPercentage} handleClick={handleOpenLibrary} id={element.id} key={element.id} />)  
-            })
-            }
-       
+        <div className='main-wrapper'>
+            <h1>{title}</h1>
+
+            <div className="analyse analyse_lib">
+
+                <AddLibrary callback={(id) => { handleShowCards(id) }} />
+
+                {libraries?.map((element) => {
+                    return (<LibraryItem name={element.title} count={element.cardsCount} percent={element.learnedPercentage} isFavorite={false} handleClick={handleOpenLibrary} id={element.id} isUserLibs={isUserLibs} key={element.id} />)
+                })}
+
+            </div>
+
         </div>
-        
-    </div>
     )
 }
 

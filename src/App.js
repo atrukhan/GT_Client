@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import { BrowserRouter as Router, Routes ,Route, Link} from 'react-router-dom';
 import './App.css'
-import Login from './components/Login'
-import Main from './components/Main'
+import LoginPage from './components/LoginPage'
+import MainPage from './components/MainPage'
 
 const App = () => {
 
@@ -10,8 +10,8 @@ const App = () => {
     
     <Router>
       <Routes>
-        <Route exact path="/auth" element={<Login />} />
-        <Route exact path="/" element={<Main />} />
+        <Route exact path="/auth" element={<LoginPage />} />
+        <Route exact path="/" element={<MainPage />} />
       </Routes>
     </Router>
     

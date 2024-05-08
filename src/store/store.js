@@ -11,90 +11,33 @@ export default class Store {
         roles:[],
     }
 
-    defLib = null;
+    defaultLibraries = null;
     libraries = null;
-    // libraries = [{
-    //     id: 1,
-    //     title:"Cloth33-es2",
-    //     cardsCount: 120,
-    //     percent: 0,
-    //     cards: [{
-    //         id: 1,
-    //         value: "Elephant",
-    //         translation:"Слон",
-    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
-    //     },{
-    //         id: 2,
-    //         value: "Elephant",
-    //         translation:"Слон",
-    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
-    //     },{
-    //         id: 3,
-    //         value: "Elephant",
-    //         translation:"Слон",
-    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
-    //     }]
-    // }, {
-    //     id: 2,
-    //     name:"Emotions",
-    //     cardsCount: 100,
-    //     percent: 21,
-    //     cards: [{
-    //         id: 1,
-    //         value: "Elephant",
-    //         translation:"Слон",
-    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
-    //     },{
-    //         id: 2,
-    //         value: "Elephant",
-    //         translation:"Слон",
-    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
-    //     },{
-    //         id: 3,
-    //         value: "Elephant",
-    //         translation:"Слон",
-    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
-    //     }]
-    // }, {
-    //     id: 3,
-    //     name:"War",
-    //     cardsCount: 130,
-    //     percent: 81,
-    //     cards: [{
-    //         id: 1,
-    //         value: "Elephant",
-    //         translation:"Слон",
-    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
-    //     },{
-    //         id: 2,
-    //         value: "Elephant",
-    //         translation:"Слон",
-    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
-    //     },{
-    //         id: 3,
-    //         value: "Elephant",
-    //         translation:"Слон",
-    //         example:"111111111111111   1111111111111111111111 11111111111111111111"
-    //     }]
-    // }]
-
     cards = null;
 
-    currentLib = -1
+    defaultLibraryId = -1
+    userLibraryId = -1
+    trainingId = -1
 
     authType = 'login';
 
     isAuth = false;
 
-    topUsers = [];
-
     mainComponents = {
-        main: 1,
-        chat: 2,
-        library: 3,
+        allLibraries: 1,
+        defaultCards: 2,
+        myLibraries: 3,
+        userCards: 4,
+        rules: 5,
+        tests: 6,
+        messenger: 7,
+        friends: 8,
+        analytic: 9,
+        settings: 10,
+        training: 11
     }
 
-    mainComponent = this.mainComponents.main;
+    mainComponent = this.mainComponents.allLibraries;
 
     isDarkMode = false;
 
@@ -130,8 +73,16 @@ export default class Store {
         this.user = user
     }
 
-    setTopUsers(users){
-        this.topUsers = users
+    setDefaultLibraryId(id){
+        this.defaultLibraryId = id
+    }
+
+    setUserLibraryId(id){
+        this.userLibraryId = id
+    }
+
+    setTrainingId(id){
+        this.trainingId = id
     }
 
     setDarkMode(isDarkMode){
@@ -146,12 +97,14 @@ export default class Store {
     addLibrary(library){
         this.libraries = [...this.libraries, library]
     }
+    
 
     async login(email, password){
         try{
             const response = await axios.post('/api/auth/signin', {"email":email, "password":password})
-            localStorage.setItem("token", response.data.token)
-            this.setAuth(true)
+            sessionStorage.setItem("token", response.data.token)
+            // sessionStorage.setItem("expires_on", response.data.expires)
+            this.setAuth(true)  
             this.setUser({"nickname":response.data.nickname, "email": response.data.email, "id": response.data.id, "roles": response.data.roles})
             
         } catch (e) {
@@ -171,7 +124,7 @@ export default class Store {
     async logout(){
         try{
             const response = await axios.post('/api/auth/logout')
-            localStorage.deleteItem("token")
+            sessionStorage.deleteItem("token")
             this.setAuth(false)
             this.setUser({
                 nickname: "",
@@ -181,27 +134,30 @@ export default class Store {
                 roles: [],
             })
         } catch (e) {
-            console.log(e.response?.data?.message)
+            // console.log(e.response?.data?.message)
         }
     }
 
    async getDefaultLibs(callback){
+    
         try {
             const response = await axios.post('/api/user/def_libs')
-            this.defLib = response.data
-            this.libraries = response.data
+            this.defautlLibraries = response.data
             this.currentLib -= 1
             if(callback != undefined)
                 callback(this.currentLib)
+           
         } catch (e) {
             console.log(e.response?.data?.message)
+           
         }
+        
    }
 
     async getUserLibs(callback){
         try {
             const response = await axios.post('/api/user/user_libs')
-            this.libraries = [...this.defLib , ...response.data]
+            this.libraries = [...response.data]
             
             this.currentLib -= 1
             console.log(this.currentLib)
@@ -215,7 +171,7 @@ export default class Store {
         try {
             const response = await axios.post('/api/user/user_lib_create', {"title": title})
             if(response.status == 200)
-                this.libraries = [...this.libraries, {"id": response.data.id, "title": title, "learnedPercentage": response.data.learnedPercentage, "code":response.data.code, "cardsCount": response.data.cardsCount, "def": response.data.isDef}]
+                this.libraries = [...this.libraries, {"id": response.data.id, "title": title, "code":response.data.code, "cardsCount": response.data.cardsCount}]
         } catch (e) {
             console.log(e.response?.data?.message)
         }
@@ -232,14 +188,27 @@ export default class Store {
         }
     }
 
-    async getCards(libId, callback){
+    async getDefaultCards(libId, callback){
         try {
             let response;
-            if(this.libraries.filter((el) => el.id == libId)[0].def == false){
-                response = await axios.post(`/api/user/user_lib_cards/${libId}`)
-            }else{
-               response = await axios.post(`/api/user/def_lib_cards/${libId}`) 
-            }
+           
+            response = await axios.post(`/api/user/def_lib_cards/${libId}`) 
+            
+            this.cards = response.data;
+            callback()
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+
+    
+
+    async getUserCards(libId, callback){
+        try {
+            let response;
+            
+            response = await axios.post(`/api/user/user_lib_cards/${libId}`)
+            
             this.cards = response.data;
             callback()
         } catch (e) {

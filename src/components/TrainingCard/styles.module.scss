@@ -1,0 +1,32 @@
+.tinder__card {
+    background-color: var(--color_bg-card);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow_2);
+    display: inline-block;
+    width: 90vw;
+    max-width: 400px;
+    height: 30vh;
+    position: absolute;
+    will-change: transform;
+    transition: all 0.3s ease-in-out;
+    cursor: grab;
+
+    &.moving {
+        transition: none;
+        cursor: grabbing;
+    }
+
+    h3 {
+        margin-top: 32px;
+        font-size: 32px;
+        padding: 0 16px;
+        pointer-events: none;
+    }
+
+    p {
+        margin-top: 24px;
+        font-size: 20px;
+        padding: 0 16px;
+        pointer-events: none;
+    }
+}
