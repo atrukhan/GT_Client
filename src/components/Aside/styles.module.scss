@@ -1,0 +1,81 @@
+
+.aside{
+    height: 100vh;
+
+    .sidebar{
+        display: flex;
+        flex-direction: column;
+        background-color: var(--color-white);
+        box-shadow: var(--box-shadow);
+        border-radius: 15px;
+        height: 88vh;
+        position: relative;
+        /* top: 1.5rem; */
+        transition: all 0.3s ease;
+
+        &:hover{
+            box-shadow: none;
+        }
+
+        a{
+            display: flex;
+            align-items: center;
+            color: var(--color-info-dark);
+            height: 3.7rem;
+            gap: 1rem;
+            position: relative;
+            margin-left: 2rem;
+            transition: all 0.3s ease;
+
+            span{
+                font-size: 1.6rem;
+                transition: all 0.3s ease;
+                height: 22px;
+            }
+
+            &.active{
+                width: 100%;
+                color: var(--color-primary);
+                background-color: var(--color-light);
+                margin-left: 0;
+
+                &::before{
+                    content: '';
+                    width: 6px;
+                    height: 18px;
+                    background-color: var(--color-primary);
+                }
+
+                
+                span{
+                    color: var(--color-primary);
+                    margin-left: calc(1rem - 3px);
+                }
+            }
+
+            &:hover{
+                color: var(--color-primary);
+
+                span{
+                    margin-left: 0.6rem;
+                }
+            }
+            
+        }
+
+        .last_child{
+            position: absolute;
+            bottom: 2rem;
+            right: 0;
+            left: 0;
+        }
+
+        .message_count{
+            background-color: var(--color-danger);
+            padding: 2px 6px;
+            color: var(--color-white);
+            font-size: 11px;
+            border-radius: var(--border-radius-1);
+        }
+    }
+}

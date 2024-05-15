@@ -1,5 +1,5 @@
 import React, {useEffect, useContext, useState} from 'react'
-import './style.css'
+import styles from './style.module.scss'
 import { Context } from '../../../index';
 import { MdOutlineInventory, MdCopyAll} from "react-icons/md";
 
@@ -17,30 +17,17 @@ const DefaultLibrary = ({name, count, code, id}) => {
         navigator.clipboard.writeText(code)
     }
 
-    const handleTraining = (event) => {
-        event.stopPropagation()
-        store.setDefaultLibraryId(id)
-        store.setMainComponent(store.mainComponents.trainingDefault)
-    }
+
 
   return (
 
-        <div className="status" onClick={(event) => {handleClick(id)}}>
-            <div className="info">
+        <div className={styles.status} onClick={(event) => {handleClick(id)}}>
+            <div className={styles.info}>
                 <h1>{name}</h1>
                 <h2>{count} Cards</h2>
             </div>
-            {/* <div className="progresss">
-                <svg>
-                    <circle cx="38" cy="38" r="36"></circle>
-                </svg>
-                <div className="percentage">
-                    <p>{percent}%</p>
-                </div>
-            </div> */}
-            <div className='settings-training'>
+            <div className={styles.settings_training}>
                 <a onClick={(event) => {handleCopyClick(event)}}><span><MdCopyAll /></span></a>
-                <a onClick={(event) => { handleTraining(event)}}><span><MdOutlineInventory /></span></a>
             </div>
         </div>
   )

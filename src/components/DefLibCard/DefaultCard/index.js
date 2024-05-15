@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './style.css'
+import styles from './styles.module.scss'
 
 const DefaultCard = ({value, translation, example}) => {
 
@@ -11,14 +11,14 @@ const DefaultCard = ({value, translation, example}) => {
 
   return (
 
-    <div className="status" onClick={() => {handleTurn()}}>
+    <div className={styles.status} onClick={() => {handleTurn()}}>
 
       {exampleVisability ? (
-        <div className="info">
+        <div className={styles.info}>
           <h3>{example}</h3>
         </div>
       ) : ( 
-        <div className="info">
+        <div className={styles.info}>
           <h1>{value}</h1>
           <h3>{translation}</h3>
         </div>

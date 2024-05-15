@@ -1,0 +1,14 @@
+.main_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.analyse{
+    display: grid;
+    gap: 1.6rem;
+}
+
+.analyse_lib {
+    grid-template-columns: repeat(2, 1fr);
+}

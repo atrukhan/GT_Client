@@ -1,0 +1,78 @@
+.body{
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    user-select: none;
+    overflow: hidden;
+    color: var(--color-dark);
+    background-color: var(--color-background);
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    margin: 0 auto;
+    /* gap: 1.8rem; */
+    /* grid-template-columns: 12rem auto 23rem; */
+}
+
+.dark_mode_variables{
+    --scrollbarBG: #202528;
+    --box-shadow_2: 0 4px 8px 0 rgba(21,21,21,.2);
+    --color-input: #c4c3ca;
+    --color-bginput: #1f2029;
+    --color-create-example: #c4c3ca;
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4);
+    --color-blur: rgba(39, 39, 47, 0.4);
+    --color-card-add: #2a2b38;
+    --box-shadow: 0 2rem 3rem var(--color-light);
+    --input-bg: #3d3f49;
+    --msg-message: #9da1a6;
+    --chat-text-bg: #3d3f49;
+    --msg-date: #9da1a6;
+    --text-color: #fff;
+    --theme-color: #0086ff;
+    --button-color: #0086ff;
+    --button-bg-color: rgba(37, 47, 105, 0.29);
+    --msg-hover-bg: rgba(62, 64, 72, 0.4);
+    --active-conversation-bg: linear-gradient(
+            to right,
+            rgba(37, 47, 105, 0.4) 0%,
+            rgba(238, 242, 244, 0) 100%
+    );
+    --overlay-bg: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(32, 37, 40, 100) 65%,
+            rgba(32, 37, 40, 100) 100%
+    );
+    --chat-header-bg: linear-gradient(
+            to bottom,
+            rgba(32, 37, 40, 100) 0%,
+            rgba(32, 37, 40, 100) 78%,
+            rgba(255, 255, 255, 0) 100%
+    );
+
+    --box-shadow_2: 0 4px 8px 0 rgba(21,21,21,.2);
+    --color-input: #c4c3ca;
+    --color-bginput: #1f2029;
+    --color-create-example: #c4c3ca;
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4);
+    --color-blur: rgba(39, 39, 47, 0.4);
+    --color-card-add: #2a2b38;
+    --box-shadow: 0 2rem 3rem var(--color-light);
+    --theme-color: #0086ff;
+    --button-color: var(--theme-color);
+}

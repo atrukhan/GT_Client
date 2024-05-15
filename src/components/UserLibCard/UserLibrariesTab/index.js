@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import './style.css'
+import styles from './styles.module.scss'
 import UserLibrary from '../../UserLibCard/UserLibrary'
 import AddLibrary from '../AddLibrary'
 import axios from "../../../api/axios";
@@ -61,15 +61,16 @@ const UserLibrariesTab = ({handleAddClick}) => {
 
 
     return (
-        <div className='main-wrapper'>
+        <div className={styles.main_wrapper}>
             <h1>My Libraries</h1>
 
-            <div className="analyse analyse_lib">
+            <div className={`${styles.analyse} ${styles.analyse_lib}`}>
 
                 <AddLibrary handleClick={setAddFormVisability}/>
 
                 {libraries?.map((element) => {
-                    return (<UserLibrary name={element.title} count={element.cardsCount} percent={element.learnedPercentage} isFavorite={false} id={element.id} handleTraining={handleTraining} key={element.id} />)
+                    console.log(element)
+                    return (<UserLibrary name={element.title} count={element.cardsCount} code={element.code} isFavorite={false} id={element.id} handleTraining={handleTraining} key={element.id} />)
                 })}
 
             </div>

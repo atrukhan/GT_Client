@@ -1,0 +1,29 @@
+.status{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 0;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    width: 25vw;
+    height: 22vh;
+
+    &:hover{
+        box-shadow: none;
+    }
+}
+
+
+.info {
+    display: flex;
+    margin-left: 1rem;
+    width: 10rem;
+    gap: 1rem;
+    flex-direction: column;
+}

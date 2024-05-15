@@ -1,0 +1,42 @@
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 0;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    height: 18vh;
+
+    &:hover{
+        box-shadow: none;
+    }
+}
+
+.info {
+    display: flex;
+    margin-left: 1rem;
+    width: 10rem;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.settings_training {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+
+    a {
+        font-size: 2.3rem;
+        transition: 0.5s ease;
+
+        &:hover {
+            transform: scale(0.85);
+        }
+    }
+}

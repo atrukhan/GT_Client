@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import Aside from '../Aside';
-import './style.css'
+import styles from './styles.module.scss'
 import { Context } from '../../index';
 import UserLibrariesTab from '../UserLibCard/UserLibrariesTab';
 import DefaultLibrariesTab from '../DefLibCard/DefaultLibrariesTab';
@@ -13,7 +13,6 @@ import SettingsTab from '../SettingsTab';
 import MessengerTab from '../Messenger/MessengerTab';
 import axios from "../../api/axios";
 import TrainingTab from '../TrainingTab';
-import AddLibraryNew from '../UserLibCard/AddLibraryNew';
 
 const MainPageContent = ({ user, setUser }) => {
 
@@ -58,8 +57,6 @@ const MainPageContent = ({ user, setUser }) => {
                     navigate('/auth')
                     store.setMainComponent(store.mainComponents.allLibraries)
                 }
-            // case store.mainComponents.friends:
-            //     return <TestsTab />;
             case store.mainComponents.analytic:
                 if (user != null)
                     return <AnalyticTab />;
@@ -74,15 +71,13 @@ const MainPageContent = ({ user, setUser }) => {
                     navigate('/auth')
                     store.setMainComponent(store.mainComponents.allLibraries)
                 }
-            // case store.mainComponents.trainingDefault:
-            //     return <TrainingTab libId={store.defaultLibraryId} isDef={true}/>
             case store.mainComponents.training:
                 return <TrainingTab trainingId={store.trainingId} />
         }
     }
 
     return (
-        <div className='page__container'>
+        <div className={styles.page_container}>
             <Aside user={user} setUser={setUser}/>
             <main>
                 {loadMainComponent()}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './styles.module.scss'
 
-const TrainingCard = ({ value, translation }) => {
+const TrainingCard = ({ style, value, translation }) => {
 
   const [exampleVisability, setExampleVisability] = useState(false);
 
@@ -11,7 +11,7 @@ const TrainingCard = ({ value, translation }) => {
 
   return (
 
-    <div className={styles.tinder__card}>
+    <div className={styles.tinder__card} style={style}>
       <h3>Card 1</h3>
       <p>This is a demo for Tinder like swipe cards</p>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
+import styles from './styles.module.scss'
 import { Context } from '../../../index';
-import LibraryItem from '../DefaultLibrary'
+import DefaultLibrary from '../DefaultLibrary'
 import axios from "../../../api/axios";
 
 const DefaultLibrariesTab = ({ title, isUserLibs, handleOpenLibrary }) => {
@@ -32,12 +33,12 @@ const DefaultLibrariesTab = ({ title, isUserLibs, handleOpenLibrary }) => {
   
 
     return (
-        <div className='main-wrapper'>
+        <div className={styles.main_wrapper}>
             <h1>All Libraries</h1>
-            <div className="analyse analyse_lib">
+            <div className={`${styles.analyse} ${styles.analyse_lib}`}>
 
                 {libraries?.map((element) => {
-                    return (<LibraryItem name={element.title} count={element.cardsCount} code={element.code}  handleClick={handleOpenLibrary} id={element.id} key={element.id} />)
+                    return (<DefaultLibrary name={element.title} count={element.cardsCount} code={element.code}  handleClick={handleOpenLibrary} id={element.id} key={element.id} />)
                 })}
 
             </div>

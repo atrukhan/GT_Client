@@ -1,4 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react'
+import styles from './styles.module.scss'
 import Header from '../../components/Header'
 import MainPageContent from '../MainPageContent'
 import { Context } from '../../index'
@@ -29,12 +30,11 @@ const MainPage = () => {
   useEffect(() => {
     checkAuth().then(result => setUser(result))
     store.setCallbackDarkMode((v) => {setUpdate(v)})
-    // store.getDefaultLibs();
   }, [])
 
   return (
-    <div className={store.isDarkMode ? 'body dark-mode-variables' : 'body'}>
-      <div className='container'>
+    <div className={store.isDarkMode ? `${styles.body} ${styles.dark_mode_variables}` : styles.body}>
+      <div className={styles.container}>
           <Header user={user}/>
           <MainPageContent user={user} setUser={setUser}/>
       </div>

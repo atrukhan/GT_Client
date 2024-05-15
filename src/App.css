@@ -64,69 +64,11 @@
     --border-radius-2: 1.2rem;
 
     --card-padding: 1.8rem;
-    /* --card-padding: 2.8rem; */
     --padding-1: 1.2rem;
 
     --box-shadow: 0 2rem 3rem var(--color-light);
     --box-shadow_1: 0 2rem 3rem var(--color-light);
     --box-shadow_2: 0 2rem 3rem rgba(21,21,21,.2);
-}
-
-.dark-mode-variables{
-    --scrollbarBG: #202528;
-    --box-shadow_2: 0 4px 8px 0 rgba(21,21,21,.2);
-    --color-input: #c4c3ca;
-    --color-bginput: #1f2029;
-    --color-create-example: #c4c3ca;
-    --color-background: #181a1e;
-    --color-white: #202528;
-    --color-dark: #edeffd;
-    --color-dark-variant: #a3bdcc;
-    --color-light: rgba(0, 0, 0, 0.4);
-    --color-blur: rgba(39, 39, 47, 0.4);
-    --color-card-add: #2a2b38;
-    --box-shadow: 0 2rem 3rem var(--color-light);
-    --input-bg: #3d3f49;
-    --msg-message: #9da1a6;
-    --chat-text-bg: #3d3f49;
-    --msg-date: #9da1a6;
-    --text-color: #fff;
-    --theme-color: #0086ff;
-    --button-color: #0086ff;
-    --button-bg-color: rgba(37, 47, 105, 0.29);
-    --msg-hover-bg: rgba(62, 64, 72, 0.4);
-    --active-conversation-bg: linear-gradient(
-            to right,
-            rgba(37, 47, 105, 0.4) 0%,
-            rgba(238, 242, 244, 0) 100%
-    );
-    --overlay-bg: linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(32, 37, 40, 100) 65%,
-            rgba(32, 37, 40, 100) 100%
-    );
-    --chat-header-bg: linear-gradient(
-            to bottom,
-            rgba(32, 37, 40, 100) 0%,
-            rgba(32, 37, 40, 100) 78%,
-            rgba(255, 255, 255, 0) 100%
-    );
-
-    --box-shadow_2: 0 4px 8px 0 rgba(21,21,21,.2);
-    --color-input: #c4c3ca;
-    --color-bginput: #1f2029;
-    --color-create-example: #c4c3ca;
-    --color-background: #181a1e;
-    --color-white: #202528;
-    --color-dark: #edeffd;
-    --color-dark-variant: #a3bdcc;
-    --color-light: rgba(0, 0, 0, 0.4);
-    --color-blur: rgba(39, 39, 47, 0.4);
-    --color-card-add: #2a2b38;
-    --box-shadow: 0 2rem 3rem var(--color-light);
-    --theme-color: #0086ff;
-    --button-color: var(--theme-color);
 }
 
 [data-theme="blue"] {
@@ -170,18 +112,6 @@ html{
     font-size: 14px;
 }
 
-.body{
-    scrollbar-width: thin;
-    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-    width: 100vw;
-    height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.88rem;
-    user-select: none;
-    overflow: hidden;
-    color: var(--color-dark);
-    background-color: var(--color-background);
-}
 
 a{
     color: var(--color-dark);
@@ -220,6 +150,13 @@ b{
     color: var(--color-dark);
 }
 
+
+
+
+
+
+
+
 .text-muted{
     color: var(--color-info-dark);
 }
@@ -240,149 +177,37 @@ b{
     color: var(--color-warning);
 }
 
-.container{
-    display: flex;
-    flex-direction: column;
-    width: 96%;
-    margin: 0 auto;
-    /* gap: 1.8rem; */
-    /* grid-template-columns: 12rem auto 23rem; */
-}
-
-.page__container {
-    padding-top: 1.5rem;
-    display: grid;
-    gap: 3rem;
-    grid-template-columns: 12rem auto;
-}
-
-aside{
-    height: 100vh;
-}
-
-
-
-
-
-aside .sidebar{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-white);
-    box-shadow: var(--box-shadow);
-    border-radius: 15px;
-    height: 88vh;
-    position: relative;
-    /* top: 1.5rem; */
-    transition: all 0.3s ease;
-}
-
-aside .sidebar:hover{
-    box-shadow: none;
-}
-
-aside .sidebar a{
-    display: flex;
-    align-items: center;
-    color: var(--color-info-dark);
-    height: 3.7rem;
-    gap: 1rem;
-    position: relative;
-    margin-left: 2rem;
-    transition: all 0.3s ease;
-}
-
-aside .sidebar a span{
-    font-size: 1.6rem;
-    transition: all 0.3s ease;
-    height: 22px;
-}
-
-aside .sidebar .last-child{
-    position: absolute;
-    bottom: 2rem;
-    right: 0;
-    left: 0;
-}
-
-aside .sidebar a.active{
-    width: 100%;
-    color: var(--color-primary);
-    background-color: var(--color-light);
-    margin-left: 0;
-}
-
-aside .sidebar a.active::before{
-    content: '';
-    width: 6px;
-    height: 18px;
-    background-color: var(--color-primary);
-}
-
-aside .sidebar a.active span{
-    color: var(--color-primary);
-    margin-left: calc(1rem - 3px);
-}
-
-aside .sidebar a:hover{
-    color: var(--color-primary);
-}
-
-aside .sidebar a:hover span{
-    margin-left: 0.6rem;
-}
-
-aside .sidebar .message-count{
-    background-color: var(--color-danger);
-    padding: 2px 6px;
-    color: var(--color-white);
-    font-size: 11px;
-    border-radius: var(--border-radius-1);
-}
-
-
 main{
     /*margin-top: 1.4rem;*/
 }
 
-.main-wrapper {
+/* .main-wrapper {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-}
+} */
 
-.analyse_cards{
+/* .analyse_cards{
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
-}
+} */
 
-.analyse_lib {
+/* .analyse_lib {
     grid-template-columns: repeat(2, 1fr);
 }
 
 main .analyse{
     display: grid;
-    
     gap: 1.6rem;
    
-}
+} */
 
 
-
-main .analyse > div{
-    /* background-color: var(--color-white);
-    padding: var(--card-padding);
-    border-radius: var(--card-border-radius);
-    margin-top: 0;
-    box-shadow: var(--box-shadow);
-    cursor: pointer;
-    transition: all 0.3s ease; */
-}
-
-main .analyse > div:hover{
+/* main .analyse > div:hover{
     box-shadow: none;
-}
+} */
 
-main .analyse_cards .status{
+/* main .analyse_cards .status{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -397,9 +222,9 @@ main .analyse_cards .status{
 
     width: 25vw;
     height: 22vh;
-}
+} */
 
-main .analyse_lib .status{
+/* main .analyse_lib .status{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -413,12 +238,12 @@ main .analyse_lib .status{
     transition: all 0.3s ease;
 
     height: 18vh;
-}
+} */
 
-main .analyse h3{
+/* main .analyse h3{
     margin-left: 0.6rem;
     font-size: 1rem;
-}
+} */
 
 main .analyse .progresss{
     position: relative;
@@ -456,50 +281,14 @@ main .analyse .progresss .percentage{
     width: 100%;
 }
 
-/* .form_library .library_block{
-    align-items: center;
-    margin-top: 1rem;
-}
-
-.form_library .status{
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.form_library h1{
-    font-size: 20px;
-} */
-
-/* .input_library{
-    width: 70%;
-    padding: 8px 5px 8px 5px;
-    border: var(--color-dark) solid 1px;
-    background-color: var(--color-white);
-    color: var(--color-dark);
-    border-radius: 4px;
-} */
-
-/* .button_addlibrary{
-    float: right;
-    background: #3571DE;
-    align-items: center;
-    color: #fff;
-    width: 6rem;
-    height: 2rem;
-    border-radius: 15px;
-    border: none;
-} */
-
-.title{
+/* .title{
     display: flex;
     justify-content: start;
     gap: 0.1rem;
     align-items: center;
-}
+} */
 
-.back{
+/* .back{
     width: 35px;
     height: 35px;
     border-radius: 35px;
@@ -508,9 +297,9 @@ main .analyse .progresss .percentage{
     padding: 9px;
     background-color: var(--color-background);
     color: var(--color-dark);
-}
+} */
 
-.back span {
+/* .back span {
     display: flex;
     font-size: 1.7rem;
 }
@@ -518,35 +307,35 @@ main .analyse .progresss .percentage{
 .back:hover{
     transition: all 0.3s ease;
     color: var(--color-primary);
-}
+} */
 
 
 
-main .analyse .settings-training {
+/* main .analyse .settings-training {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 1rem;
-}
+} */
 
-main .analyse .settings-training a {
+/* main .analyse .settings-training a {
     font-size: 2.3rem;
     transition: 0.5s ease;
-}
+} */
 
-main .analyse .settings-training a:hover {
+/* main .analyse .settings-training a:hover {
     transform: scale(0.85);
-}
+} */
 
 
-main .analyse .info {
+/* main .analyse .info {
     display: flex;
     margin-left: 1rem;
     width: 10rem;
     gap: 1rem;
     flex-direction: column;
-}
+} */
 
-@media screen and (max-width: 1200px) {
+/* @media screen and (max-width: 1200px) {
     .container {
         width: 95%;
         grid-template-columns: 7rem auto 23rem;
@@ -663,4 +452,4 @@ main .analyse .info {
     .header .nav button span{
         font-size: 2rem;
     }
-}
+} */

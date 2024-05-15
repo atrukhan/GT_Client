@@ -38,6 +38,8 @@ const AddLibraryNew = ({ visability, handleAddLib, setVisability }) => {
             createLib().then(result => handleAddLib(result))
         else
             copyLib().then(result => handleAddLib(result))
+
+        handleClose()
     }
 
     const handleClose = () => {
@@ -55,8 +57,8 @@ const AddLibraryNew = ({ visability, handleAddLib, setVisability }) => {
                             <span><MdClose onClick={() => { handleClose() }} /></span>
                         </div>
                         <h1>New Library</h1>
-                        <input type="text" className={styles.input_library} placeholder="Title" onChange={(e) => { setTitle(e.target.value) }} />
-                        <input type="text" className={styles.input_library} placeholder="Copy by code" onChange={(e) => { setCode(e.target.value) }} />
+                        <input type="text" className={styles.input_library} value={title} placeholder="Title" onChange={(e) => { setTitle(e.target.value) }} />
+                        <input type="text" className={styles.input_library} value={code} placeholder="Copy by code" onChange={(e) => { setCode(e.target.value) }} />
                         <div className={styles.block_item}>
                             <button className={styles.button_addlibrary} onClick={() => { handleAddClick() }}>Add</button>
                         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import styles from './styles.module.scss'
 import axios from "../../../api/axios";
 import { MdClose } from "react-icons/md";
@@ -8,6 +8,8 @@ const AddCardNew = ({libId, visability, handleAddCard, setVisability }) => {
     const [value, setValue] = useState("");
     const [translation, setTranslation] = useState("");
     const [example, setExample] = useState("");
+
+    const translateRef = useRef(null)
 
     const createCard = async () => {
         try {
@@ -38,14 +40,14 @@ const AddCardNew = ({libId, visability, handleAddCard, setVisability }) => {
     const handleTranslateClick = async () => {
         translateValue().then(result => {
             if(result != null){
-                const json_obj = JSON.parse(result)
-                setTranslation(JSON.stringify(json_obj.get("translations").get("possible-translations")[0]))
+                setTranslation(result.translations["possible-translations"][0])
             }
         })
     }
 
     const handleAddClick = async () => {
         createCard().then(result => handleAddCard(result))
+        handleClose()
     }
 
     const handleClose = () => {
@@ -64,9 +66,9 @@ const AddCardNew = ({libId, visability, handleAddCard, setVisability }) => {
                             <span><MdClose onClick={() => { handleClose() }} /></span>
                         </div>
                         <h1>New Card</h1>
-                        <input type="text" className={styles.input_card} placeholder="Name Card" onChange={(e) => { setValue(e.target.value) }} />
-                        <input type="text" className={styles.input_card} placeholder="Translate Library" onChange={(e) => { setTranslation(e.target.value) }} />
-                        <textarea type="text" className={styles.inputtext_card} placeholder="Example Library" onChange={(e) => { setExample(e.target.value) }} ></textarea>
+                        <input type="text" className={styles.input_card} value={value} placeholder="Name" onChange={(e) => { setValue(e.target.value) }} />
+                        <input type="text" className={styles.input_card} value={translation} placeholder="Translate" onChange={(e) => { setTranslation(e.target.value) }} />
+                        <textarea type="text" className={styles.inputtext_card} value={example} placeholder="Example" onChange={(e) => { setExample(e.target.value) }} ></textarea>
                         <div className={styles.block_item}>
                             <p className={styles.create_example} onClick={() => { handleTranslateClick() }}><a className={styles.link}>GoogTranslate</a></p>
                             <button className={styles.button_addcard} onClick={() => { handleAddClick() }}>add</button>

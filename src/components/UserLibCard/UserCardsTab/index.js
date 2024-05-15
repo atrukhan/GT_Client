@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react'
-import './style.css'
+import styles from './styles.module.scss'
 import { Context } from '../../../index';
 import UserCard from '../UserCard'
 import AddCard from '../AddCard'
@@ -40,15 +40,15 @@ const UserCardsTab = ({libId}) => {
     }
 
     return (
-    <div className='main-wrapper'>
-        <div className='title'>
-            <a className="back" onClick={() => {handleCloseLibrary()}}>
+    <div className={styles.main_wrapper}>
+        <div className={styles.title}>
+            <a className={styles.back} onClick={() => {handleCloseLibrary()}}>
                 <span><MdArrowBackIos /></span>
             </a>
             <h1>Cards</h1>
         </div>
         
-        <div className="analyse analyse_cards">
+        <div className={`${styles.analyse} ${styles.analyse_cards}`}>
             <AddCard handleClick={setAddFormVisability}/>
             
             {
