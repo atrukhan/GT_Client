@@ -21,7 +21,7 @@ export const Aside = ({user, setUser}) => {
             return (
             <a className={styles.last_child} onClick={()=>{handleLogoutClick()}}>
                 <span><MdLogout /></span>
-                <h3>Logout</h3>
+                <h3>Выход</h3>
             </a>
             ); 
         }
@@ -33,29 +33,29 @@ export const Aside = ({user, setUser}) => {
         <div className={styles.sidebar}>
             <a className={store.mainComponent == store.mainComponents.allLibraries ? styles.active : ''} onClick={()=>{handleMenuClick(store.mainComponents.allLibraries)}}>
                 <span><MdDashboard /></span>
-                <h3>All Libraries</h3>
+                <h3>Все наборы</h3>
             </a>
           
             <a className={store.mainComponent == store.mainComponents.myLibraries ? styles.active : ''} onClick={()=>{handleMenuClick(store.mainComponents.myLibraries)}}>
                 <span><MdLocalLibrary /></span>
-                <h3>My Libraries</h3>
+                <h3>Мои наборы</h3>
             </a>
             <a className={store.mainComponent == store.mainComponents.tests ? styles.active : ''} onClick={()=>{handleMenuClick(store.mainComponents.tests)}}>
                 <span><MdViewKanban /></span>
-                <h3>Tests</h3>
+                <h3>Тесты</h3>
             </a>
             <a className={store.mainComponent == store.mainComponents.messenger ? styles.active : ''} onClick={()=>{handleMenuClick(store.mainComponents.messenger)}}>
                 <span><MdForum /></span>
-                <h3>Messenger</h3>
+                <h3>Мессенджер</h3>
                 {/* <span className="message-count">27</span> */}
             </a>
             <a className={store.mainComponent == store.mainComponents.analytic ? styles.active : ''} onClick={()=>{handleMenuClick(store.mainComponents.analytic)}}>
                 <span><MdInsights /></span>
-                <h3>Analytic</h3>
+                <h3>Аналитика</h3>
             </a>
             <a className={store.mainComponent == store.mainComponents.settings ? styles.active : ''} onClick={()=>{handleMenuClick(store.mainComponents.settings)}}>
                 <span><MdSettings /></span>
-                <h3>Settings</h3>
+                <h3>Настройки</h3>
             </a>
             {loadLogoutComponent()}
             

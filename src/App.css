@@ -69,6 +69,10 @@
     --box-shadow: 0 2rem 3rem var(--color-light);
     --box-shadow_1: 0 2rem 3rem var(--color-light);
     --box-shadow_2: 0 2rem 3rem rgba(21,21,21,.2);
+
+    --color_bg-card: #fff;
+    --color_border: #e5e5e5;
+    --color_text: #9d9d9d;
 }
 
 [data-theme="blue"] {

@@ -38,7 +38,7 @@ const DefaultCardsTab = ({libId}) => {
             <a className={styles.back} onClick={() => {handleCloseLibrary()}}>
                 <span><MdArrowBackIos /></span>
             </a>
-            <h1>Cards</h1>
+            <h1>Карточки</h1>
         </div>
         
         <div className={`${styles.analyse} ${styles.analyse_cards}`}>

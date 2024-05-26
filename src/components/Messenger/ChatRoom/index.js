@@ -28,7 +28,7 @@ const ChatRoom = ({ status }) => {
             <div className={styles.msg_detail}>
                 <div className={styles.msg_username}>Madison Jones</div>
                 <div className={styles.msg_content}>
-                    <span className={styles.msg_message}>What time was our meet</span>
+                    <span className={styles.msg_message}>Последний раз был онлайн</span>
                     <span className={styles.msg_date}>20m</span>
                 </div>
             </div>

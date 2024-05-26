@@ -9,7 +9,7 @@ const MessengerTab = () => {
             <div className={styles.messenger_wrapper}>
                 <div className={styles.conversation_area}>
                     <div className={styles.chat_area_header}>
-                        <div className={styles.chat_area_title}>Chats</div>
+                        <div className={styles.chat_area_title}>Друзья</div>
                     </div>
                     <ChatRoom status={'active'} />
                     <ChatRoom />
@@ -25,7 +25,7 @@ const MessengerTab = () => {
                 </div>
                 <div className={styles.chat_area}>
                     <div className={styles.chat_area_header}>
-                        <div className={styles.chat_area_title}>Group Name</div>
+                        <div className={styles.chat_area_title}>Чат</div>
                         <div className={styles.chat_area_group}>
                             <img className={styles.chat_area_profile} src="../imagee/main_page/avatar.jpg" alt="" />
                             <img className={styles.chat_area_profile} src="../imagee/main_page/avatar.jpg" alt="" />
@@ -45,7 +45,7 @@ const MessengerTab = () => {
                     <div className={styles.chat_area_footer}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="feather feather-paperclip">
                             <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" /></svg>
-                        <input type="text" placeholder="Type something here..." />
+                        <input type="text" placeholder="Наберите что-нибудь здесь..." />
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="feather feather-smile">
                             <circle cx="12" cy="12" r="10" />
                             <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" /></svg>

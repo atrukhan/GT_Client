@@ -27,3 +27,19 @@
     gap: 1rem;
     flex-direction: column;
 }
+
+
+.settings_training {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+
+    a {
+        font-size: 2.3rem;
+        transition: 0.5s ease;
+
+        &:hover {
+            transform: scale(0.85);
+        }
+    }
+}

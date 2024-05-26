@@ -45,21 +45,23 @@
     text-align: center;
     pointer-events: none;
 
-    i {
+    span {
         font-size: 100px;
         opacity: 0;
         transform: scale(0.3);
         transition: all 0.2s ease-in-out;
         position: absolute;
+        left: 50%;
         width: 100px;
         margin-left: -50px;
-    }
+    }   
 }
 
 
-.tinder_love .fa_cheak {
+.tinder_love .fa_check {
     opacity: 0.7;
     transform: scale(1);
+
 }
 
 .tinder_nope .fa_remove {
@@ -106,7 +108,11 @@
         vertical-align: middle;
     }
 }
-
+.fa{
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+}
 
 .fa_check {
     color: #45b048;
@@ -121,11 +127,13 @@
     background-color: var(--color_bg-card);
     border-radius: var(--card-border-radius);
     box-shadow: var(--box-shadow_2);
-    display: inline-block;
+    display: flex;
     width: 90vw;
     max-width: 400px;
     height: 30vh;
     position: absolute;
+    justify-content: center;
+    align-items: center;
     // will-change: transform;
     // transition: all 0.3s ease-in-out;
     cursor: grab;
@@ -135,11 +143,16 @@
         cursor: grabbing;
     }
 
+
     h3 {
-        margin-top: 32px;
-        font-size: 32px;
+        // margin-top: 32px;
+        font-size: 50px;
         padding: 0 16px;
         pointer-events: none;
+
+        &.lastcard{
+            font-size: 22px;
+        }
     }
 
     p {

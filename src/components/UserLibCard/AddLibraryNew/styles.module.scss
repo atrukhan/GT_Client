@@ -45,7 +45,7 @@
     padding: var(--card-padding);
     cursor: pointer;
     transition: all 0.3s ease;
-    height: 280px;
+    height: 300px;
     width: 650px;
 
     h1{
@@ -102,12 +102,13 @@
     margin-top: 25px;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: space-around;
+
 }
 
 .button_addlibrary {
     border-radius: 4px;
-    width: 5rem;
+    width: 6rem;
     height: 2rem;
     align-items: center;
     font-weight: 600;
@@ -127,3 +128,11 @@
     }
 }
 
+.validation_text{
+    font-family: 'Poppins', sans-serif;
+    padding: 0 20px;
+    width: 100%;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--color-input);
+}

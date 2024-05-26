@@ -24,7 +24,7 @@ const DefaultLibrary = ({name, count, code, id}) => {
         <div className={styles.status} onClick={(event) => {handleClick(id)}}>
             <div className={styles.info}>
                 <h1>{name}</h1>
-                <h2>{count} Cards</h2>
+                <h2>{count} Карточек</h2>
             </div>
             <div className={styles.settings_training}>
                 <a onClick={(event) => {handleCopyClick(event)}}><span><MdCopyAll /></span></a>

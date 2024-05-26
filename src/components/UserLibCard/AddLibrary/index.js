@@ -4,7 +4,7 @@ import styles from './styles.module.scss'
 function AddLibrary({handleClick}) {
 
     return (
-        <div className={styles.add} onClick={() => { handleClick(true)}}>
+        <div className={styles.add} onClick={() => { handleClick()}}>
             <div>
                 <h1>+</h1>
             </div>

@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styles from './styles.module.scss'
+import axios from "../../api/axios";
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import { registerables, Chart } from "chart.js";
 
@@ -7,6 +8,99 @@ import { registerables, Chart } from "chart.js";
 const AnalyticTab = () => {
 
     Chart.register(...registerables);
+    const [wordsCount, setWordsCount] = useState(0)
+    const [doughnutData, setDoughnutData] = useState({
+        labels: [],
+        datasets: [],
+    })
+    const [lineData, setLineData] = useState({
+        labels: [],
+        datasets: [],
+    })
+
+    const getUserLibs = async () => {
+        try {
+            const response = await axios.post('/api/user/user_libs')
+            return response.data
+        } catch (e) {
+            console.log(e.response?.data?.message)
+            return null
+        }
+    }
+
+    const getEntryDates = async () => {
+        try {
+            const response = await axios.get('/api/user/entry_dates')
+            return response.data
+        } catch (e) {
+            console.log(e.response?.data?.message)
+            return null
+        }
+    }
+
+    useEffect(() => {
+   
+        getUserLibs().then(result => {
+            let sum = 0;
+            result.map(e => {return e.cardsCount}).forEach(element => {
+                sum += element
+            });
+            setWordsCount(sum)
+            setDoughnutData({
+                labels: result.map(e => {return e.title}), 
+                datasets: [
+                    {
+                        label: "Words",
+                        data: result.map(e => {return e.cardsCount}),
+                        backgroundColor: [
+                            "rgba(155,128,151,1)",
+                            "rgba(254,111,162,1)",
+                            "rgba(244,164,111,1)",
+                        ],
+                        hoverBackgroundColor: "#ff90b8",
+                    },
+                ],
+            })
+        })
+        getEntryDates().then(result => {
+            console.log(result)
+            let countByMonth = new Array(12).fill(0); 
+  
+            result.forEach(element => {
+              let month = new Date(element.date).getMonth(); 
+              countByMonth[month]++; 
+            });
+            setLineData({
+                labels: [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec",
+                ],
+                datasets: [
+                    {
+                        label: "Monthly Income",
+                        data: countByMonth,
+                        backgroundColor: "#5D2BFF",
+                        borderColor: "#5D2BFF",
+                        borderRadius: 6,
+                        cubicInterpolationMode: 'monotone',
+                        fill: false,
+                        borderSkipped: false,
+                    },
+                ],
+            })
+        })
+        
+    }, []);
 
     const barData = {
         labels: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July"],
@@ -20,50 +114,7 @@ const AnalyticTab = () => {
         ],
     }
 
-    const doughnutData = {
-        labels: ["Fashion", "Gadjet", "Other"],
-        datasets: [
-            {
-                label: "My Revenue",
-                data: [380, 200, 500],
-                backgroundColor: [
-                    "rgba(155,128,151,1)",
-                    "rgba(254,111,162,1)",
-                    "rgba(244,164,111,1)",
-                ],
-                hoverBackgroundColor: "#ff90b8",
-            },
-        ],
-    }
-
-    const lineData = {
-        labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-        ],
-        datasets: [
-            {
-                label: "Monthly Income",
-                data: [2235, 3250, 1890, 5400, 20240, 6254,  12325, 4856, 10325, 2254, 22356, 8486],
-                backgroundColor: "#5D2BFF",
-                borderColor: "#5D2BFF",
-                borderRadius: 6,
-                cubicInterpolationMode: 'monotone',
-                fill: false,
-                borderSkipped: false,
-            },
-        ],
-    }
+   
 
     const lineOptions = {
         interaction: {
@@ -137,7 +188,7 @@ const AnalyticTab = () => {
             <div className={styles.grid}>
                 <div className={`${styles.grid_item} ${styles.big}`}>
                     <div className={styles.big_flex}>
-                        <h1 className={styles.title_date}>Date</h1>
+                        <h1 className={styles.title_date}>Активность</h1>
                         <Bar
                             data={barData}
                             width={100}
@@ -154,7 +205,7 @@ const AnalyticTab = () => {
                 </div>
                 <div className={`${styles.grid_item} ${styles.tiny}`}>
                     <div className={styles.tiny_flex}>
-                        <h1 className={styles.title_themes}>Themes</h1>
+                        <h1 className={styles.title_themes}>Наборы</h1>
                         <Doughnut data={doughnutData}
                             options={{
                                 responsive: true,
@@ -163,19 +214,19 @@ const AnalyticTab = () => {
                 </div>
                 <div className={`${styles.grid_item} ${styles.regular}`}>
                     <div className={styles.block_item}>
-                        <h1 className={styles.title_words}>Your Words</h1>
-                        <p className={styles.number_words}>4,122</p>
+                        <h1 className={styles.title_words}>Мои карточки</h1>
+                        <p className={styles.number_words}>{wordsCount}</p>
                     </div>
                 </div>
                 <div className={`${styles.grid_item} ${styles.regular}`}>
                     <div className={styles.block_item}>
-                        <h1 className={styles.title_result}>Today's Result</h1>
+                        <h1 className={styles.title_result}>Сегодняшний результат</h1>
                         <p className={styles.number_result}>100–120</p>
                     </div>
                 </div>
                 <div className={`${styles.grid_item} ${styles.long}`}>
                     <div className={styles.block_activity}>
-                        <h1 className={styles.title_activity}>Activity</h1>
+                        <h1 className={styles.title_activity}>Тесты</h1>
                         <div className={styles.widget}>
                         <Line data={lineData}
                             options={lineOptions} />
@@ -184,7 +235,7 @@ const AnalyticTab = () => {
                 </div>
                 <div className={`${styles.grid_item} ${styles.regular}`}>
                     <div className={styles.block_item}>
-                        <h1 className={styles.title_level}>Language Lavel</h1>
+                        <h1 className={styles.title_level}>Уровень английского</h1>
                         <p className={styles.number_level}>A1</p>
                     </div>
                 </div>

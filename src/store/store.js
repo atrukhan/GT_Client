@@ -15,6 +15,8 @@ export default class Store {
     libraries = null;
     cards = null;
 
+    libsId = []
+
     defaultLibraryId = -1
     userLibraryId = -1
     trainingId = -1
@@ -31,10 +33,13 @@ export default class Store {
         rules: 5,
         tests: 6,
         messenger: 7,
-        friends: 8,
         analytic: 9,
         settings: 10,
-        training: 11
+        training: 11,
+        writingTest: 12,
+        choiceTest: 13,
+        listenCardTest: 14,
+        listenSentenceTest: 15
     }
 
     mainComponent = this.mainComponents.allLibraries;
@@ -59,6 +64,10 @@ export default class Store {
 
     constructor(){
         makeAutoObservable(this)
+    }
+
+    setLibsId(ids){
+        this.libsId = ids
     }
 
     setAuthType(authType){

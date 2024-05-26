@@ -37,7 +37,7 @@ const Header = ({ user }) => {
                 {user != null ? (
                     <div className={styles.profile}>
                         <div>
-                            <p>Hey, <b>{user.nickname}</b></p>
+                            <p><b>{user.nickname}</b></p>
                         </div>
                         <div className={styles.profile_photo}>
                             <img src="/default_avatar.jpg" />
@@ -45,7 +45,7 @@ const Header = ({ user }) => {
                     </div>
                 ) : (
                     <div className={styles.profile}>
-                        <Link to="/auth"><button className={styles.button_avatar}>Sign In</button></Link>
+                        <Link to="/auth"><button className={styles.button_avatar}>Войти</button></Link>
                     </div>
                 )}
 

@@ -1,5 +1,5 @@
 
-.grid-item {
+.grid_item {
     background-color: var(--color-white);
     box-shadow: 2px 4px 12px rgba(0,0,0,0.1);
 }
@@ -13,10 +13,10 @@
     grid-template-rows: repeat(9, 1fr);
     grid-auto-flow: dense;
     padding-bottom: 24px;
-    margin-top: 8px;
+    // margin-top: 8px;
 }
 
-.grid-item {
+.grid_item {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,9 +36,10 @@
     transition: all 0.3s ease;
     box-shadow: var(--box-shadow);
     grid-row: span 3;
-}
-.regular:hover{
-    box-shadow: none;
+
+    &:hover{
+        box-shadow: none;
+    }
 }
 
 .block_activity {
@@ -53,20 +54,20 @@
     box-shadow: var(--box-shadow);
     grid-column: span 2;
     grid-row: span 3;
-}
 
-.long:hover{
-    box-shadow: none;
+    &:hover{
+        box-shadow: none;
+    }
 }
 
 .tiny {
     transition: all 0.3s ease;
     box-shadow: var(--box-shadow);
     grid-row: span 6;
-}
 
-.tiny:hover{
-    box-shadow: none;
+    &:hover{
+        box-shadow: none;
+    }
 }
 
 .big_flex {
@@ -86,6 +87,7 @@
     font-weight: 800;
     font-size: 30px;
 }
+
 .number_words{
     color: var(--color-number-words);
     font-weight: 300;

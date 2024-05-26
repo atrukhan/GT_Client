@@ -2,11 +2,11 @@
     scrollbar-width: thin;
     scrollbar-color: var(--thumbBG) var(--scrollbarBG);
     width: 100vw;
-    height: 100vh;
+    // height: 100vh;
     font-family: 'Poppins', sans-serif;
     font-size: 0.88rem;
     user-select: none;
-    overflow: hidden;
+    // overflow: hidden;
     color: var(--color-dark);
     background-color: var(--color-background);
 }
@@ -75,4 +75,9 @@
     --box-shadow: 0 2rem 3rem var(--color-light);
     --theme-color: #0086ff;
     --button-color: var(--theme-color);
+
+    --color_bg-card: #181a1e;
+
+    --color_border: rgba(100,100,100,.2);
+    --color_text: #edeffd;
 }

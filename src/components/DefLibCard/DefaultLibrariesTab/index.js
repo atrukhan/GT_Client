@@ -34,7 +34,7 @@ const DefaultLibrariesTab = ({ title, isUserLibs, handleOpenLibrary }) => {
 
     return (
         <div className={styles.main_wrapper}>
-            <h1>All Libraries</h1>
+            <h1>Все наборы</h1>
             <div className={`${styles.analyse} ${styles.analyse_lib}`}>
 
                 {libraries?.map((element) => {

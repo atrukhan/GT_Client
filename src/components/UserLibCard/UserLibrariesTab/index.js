@@ -15,6 +15,8 @@ const UserLibrariesTab = ({handleAddClick}) => {
     const [libraries, setLibraries] = useState(null)
     const [trainingLibId, setTrainingLibId] = useState(-1)
     const [addFormVisability, setAddFormVisability] = useState(false)
+    const [addFormType, setAddFormType] = useState('Add')
+    const [addFormLibId, setAddFormLibId] = useState(-1)
     const [trainingFormVisability, setTrainingFormVisability] = useState(false)
 
     const getUserLibs = async () => {
@@ -41,6 +43,19 @@ const UserLibrariesTab = ({handleAddClick}) => {
         setLibraries([...libraries, lib])
     }
 
+    const handleEditLib = (lib) => {
+        setLibraries(libraries.map(e => {
+            if(e.id == lib.id) 
+                return lib
+            else
+                return e
+        }))
+    }
+
+    const handleDeleteLib = (lib) => {
+        setLibraries(libraries.filter(e => e.id != lib.id))
+    }
+
     const handleTraining = (libId) => {
         setTrainingLibId(libId)
         setTrainingFormVisability(true)
@@ -59,22 +74,35 @@ const UserLibrariesTab = ({handleAddClick}) => {
         }
     }
 
+    const handleAddLibraryClick = () => {
+        setAddFormType('Add')
+        setAddFormVisability(true)
+    }
+
+    const handleEditClick = (id) => {
+        setAddFormType('Edit')
+        setAddFormLibId(id)
+        setAddFormVisability(true)
+    }
+
+    const getLibById = (id) => {
+        return libraries?.find(e => e.id == id)
+    }
 
     return (
         <div className={styles.main_wrapper}>
-            <h1>My Libraries</h1>
+            <h1>Мои наборы</h1>
 
             <div className={`${styles.analyse} ${styles.analyse_lib}`}>
 
-                <AddLibrary handleClick={setAddFormVisability}/>
+                <AddLibrary handleClick={handleAddLibraryClick}/>
 
                 {libraries?.map((element) => {
-                    console.log(element)
-                    return (<UserLibrary name={element.title} count={element.cardsCount} code={element.code} isFavorite={false} id={element.id} handleTraining={handleTraining} key={element.id} />)
+                    return (<UserLibrary name={element.title} count={element.cardsCount} code={element.code} isFavorite={false} id={element.id} handleEdit={handleEditClick} handleTraining={handleTraining} key={element.id} />)
                 })}
 
             </div>
-            <AddLibraryNew visability={addFormVisability} handleAddLib={handleAddLib} setVisability={setAddFormVisability}/>
+            <AddLibraryNew type={addFormType} visability={addFormVisability} lib={getLibById(addFormLibId)} handleEditLib={handleEditLib} handleDeleteLib={handleDeleteLib} handleAddLib={handleAddLib} setVisability={setAddFormVisability}/>
             {loadTrainingsFormComponent()}
             
         </div>

@@ -39,28 +39,21 @@ const TrainingForm = ({ libId, visability, handleStartTraining, setVisability })
                         <div className={styles.close}>
                             <span><MdClose onClick={() => { handleClose() }} /></span>
                         </div>
-                        <h1>Trainings</h1>
+                        <h1>Тренировки</h1>
 
                         {trainings?.map((element) => {
                             console.log(element)
                             return (
                                 <div className={styles.input_library} disabled={!element.available} 
                                     onClick={() => {handleStartTraining(element.id)}} key={element.id}>
-                                    Repetition period: {element.period} days 
-                                    Training date: {new Date(element.nextDate).toLocaleString("en", {year: 'numeric', month: 'long', day: 'numeric', timezone: 'UTC'})} 
-                                    Missed days: {Math.floor((Date.now() - Date.parse(element.nextDate)) / (1000*60*60*24))}
+                                    Период повторения: {element.period} дней;
+                                    Дата тренировки: {new Date(element.nextDate).toLocaleString("en", {year: 'numeric', month: 'long', day: 'numeric', timezone: 'UTC'})}
+                                    {/* Пропущено дней: {Math.floor((Date.now() - Date.parse(element.nextDate)) / (1000*60*60*24))} */}
                                 </div>
                             )
                         })}
 
-                        {/* <input type="text" className={styles.input_library} placeholder="Name Library" disabled />
-                        <input type="text" className={styles.input_library} placeholder="Name Library" />
-                        <input type="text" className={styles.input_library} placeholder="Name Library" />
-                        <input type="text" className={styles.input_library} placeholder="Name Library" />
-                        <input type="text" className={styles.input_library} placeholder="Name Library" /> */}
-                        {/* <div className={styles.block_item}>
-                            <button className={styles.button_addlibrary}>Add</button>
-                        </div> */}
+                        
                     </div>
                 </div>
             </div>

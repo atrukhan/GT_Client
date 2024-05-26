@@ -47,7 +47,7 @@
     padding: var(--card-padding);
     cursor: pointer;
     transition: all 0.3s ease;
-    height: 380px;
+    height: 400px;
     width: 380px;
 
     h1{
@@ -125,7 +125,8 @@
 
 .button_addcard {
     border-radius: 4px;
-    width: 5rem;
+    padding: 0 10px;
+    // width: 5rem;
     height: 2rem;
     align-items: center;
     font-weight: 600;

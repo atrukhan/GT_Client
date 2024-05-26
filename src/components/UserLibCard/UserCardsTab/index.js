@@ -11,7 +11,10 @@ const UserCardsTab = ({libId}) => {
 
     const [update, setUpdate] = useState(false)
     const [addFormVisability, setAddFormVisability] = useState(false)
+    const [addFormCardId, setAddFormCardId] = useState(-1)
     const [cards, setCards] = useState(null)
+    const [addFormType, setAddFormType] = useState('Add')
+
     const store = useContext(Context)
 
     const getUserCards = async(libId) => {
@@ -39,26 +42,54 @@ const UserCardsTab = ({libId}) => {
         setCards([...cards, card])
     }
 
+    const handleEditClick = (id) => {
+        setAddFormType('Edit')
+        setAddFormCardId(id)
+        setAddFormVisability(true)
+    }
+
+    const handleAddCardClick = () => {
+        setAddFormType('Add')
+        setAddFormVisability(true)
+    }
+
+    const getCardById = (id) => {
+        return cards?.find(e => e.id == id)
+    }
+
+    const handleEditCard = (card) => {
+        setCards(cards.map(e => {
+            if(e.id == card.id) 
+                return card
+            else
+                return e
+        }))
+    }
+
+    const handleDeleteCard = (card) => {
+        setCards(cards.filter(e => e.id != card.id))
+    }
+
     return (
     <div className={styles.main_wrapper}>
         <div className={styles.title}>
             <a className={styles.back} onClick={() => {handleCloseLibrary()}}>
                 <span><MdArrowBackIos /></span>
             </a>
-            <h1>Cards</h1>
+            <h1>Карточки</h1>
         </div>
         
         <div className={`${styles.analyse} ${styles.analyse_cards}`}>
-            <AddCard handleClick={setAddFormVisability}/>
+            <AddCard handleClick={handleAddCardClick}/>
             
             {
          
             cards?.map((element) => {
-                return ( <UserCard value={element.value} translation={element.translation} example={element.example} key={element.id} />)  
+                return ( <UserCard id={element.id} value={element.value} translation={element.translation} example={element.example} handleEdit={handleEditClick} key={element.id} />)  
             })
             }
         </div>
-        <AddCardNew libId={libId} visability={addFormVisability} handleAddCard={handleAddCard} setVisability={setAddFormVisability}/>
+        <AddCardNew type={addFormType} card={getCardById(addFormCardId)} libId={libId} visability={addFormVisability} handleAddCard={handleAddCard} handleEditCard={handleEditCard} handleDeleteCard={handleDeleteCard} setVisability={setAddFormVisability}/>
     </div>
     )
 }

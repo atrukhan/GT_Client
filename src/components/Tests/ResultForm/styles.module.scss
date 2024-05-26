@@ -1,0 +1,123 @@
+.form_add{
+    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: 300%;
+    border-radius: var(--border-radius-2);
+    left: 0;
+    top: 0;
+    background-color: var(--color-card-add);
+    padding: var(--card-padding);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 450px;
+    width: 650px;
+
+    h1{
+        font-family: 'Poppins', sans-serif;
+        margin-top: -2rem;
+        margin-bottom: 1.7rem;
+        font-size: 20px;
+        color: var(--color-dark);
+        text-align: center;
+    }
+}
+
+.add_block{
+    align-items: center;
+    margin-top: 0.25rem;
+}
+
+.block_resultat{
+    scrollbar-width: thin;
+    height: 284px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: var(--border-radius-2);
+    background-color: var(--color-blur);
+    color: var(--color-input);
+    overflow: auto;
+    scrollbar-color: var(--scrollbarBG);
+}
+
+.mistake_list_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 25px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(132, 139, 200, 0.1);
+    p{
+        font-size: 15px;
+    }
+}
+
+.close {
+    margin-top: 0;
+    font-size: 30px;
+    font-weight: 800;
+    display: flex;
+    justify-content: end;
+    color: var(--color-dark);
+
+    span{
+        transition: 0.5s ease;
+
+        &:hover {
+            transform: scale(0.9);
+        }
+    }
+}
+
+.modal_window {
+    position: fixed;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%) scale(0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: var(--border-radius-2);
+    transition: all 0.18s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+
+    &.show {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.modal_window__backdrop {
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hidden {
+    display: none;
+}
+
+.mistake{
+    padding: 5px;
+    height: 42px;
+    background: #f91433;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.correct{
+    padding: 5px;
+    height: 42px;
+    background: #34bf6e;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 30px;
+    font-weight: 800;
+}
