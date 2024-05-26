@@ -15,7 +15,7 @@ const UserCard = ({id, value, translation, example, handleEdit }) => {
 
     const handleSpeak = (event) => {
         event.stopPropagation()
-        speak({text: value, voice: voices[115]})
+        speak({ text: value, voice: voices.find(voice => voice.lang.includes('en-GB')) })
     }
 
     const handleEditClick = (event) => {

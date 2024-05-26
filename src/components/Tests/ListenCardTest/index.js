@@ -80,7 +80,7 @@ const ListenCardTest = ({ ids }) => {
 
     const handleSpeak = (event) => {
         event.stopPropagation()
-        speak({ text: cards[index].value, voice: voices[114] })
+        speak({ text: cards[index].value, voice: voices.find(voice => voice.lang.includes('en-GB')) })
     }
 
     const loadResultFormComponent = () => {
