@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import styles from './styles.module.scss'
 import axios from "../../../api/axios";
 import { MdClose } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
 const LibsForm = ({type, visability, handleStart, setVisability}) => {
 
     const [ids, setIds] = useState([])
     const [libs, setLibs] = useState(null)
+    const { t, i18n } = useTranslation()
 
     useEffect(() => {
 
@@ -65,7 +67,7 @@ const LibsForm = ({type, visability, handleStart, setVisability}) => {
                         <div className={styles.close}>
                             <span><MdClose onClick={() => { handleClose() }} /></span>
                         </div>
-                        <h1>Выберите наборы</h1>
+                        <h1>{t('tests.select_libs')}</h1>
                         <div className={styles.block_checkbox}>
                             {libs?.map(el => {
                                 return (
@@ -79,7 +81,7 @@ const LibsForm = ({type, visability, handleStart, setVisability}) => {
 
                         </div>
                         <div className={styles.block_item}>
-                            <button className={styles.button_addlibrary} onClick={() => handleStart(type, ids)}>Начать</button>
+                            <button className={styles.button_addlibrary} onClick={() => handleStart(type, ids)}>{t('tests.start')}</button>
                         </div>
                     </div>
                 </div>

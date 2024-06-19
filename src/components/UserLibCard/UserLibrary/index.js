@@ -32,7 +32,8 @@ const UserLibrary = ({ name, count, code, id, handleTraining, handleEdit }) => {
         <div className={styles.status} onClick={(event) => { handleClick(id) }}>
             <div className={styles.info}>
                 <h1>{name}</h1>
-                <h2>{count} Карточек</h2>
+                {/* <h2>{count} Карточек</h2> */}
+                <h2>{count} Cards</h2>
             </div>
             <div className={styles.settings_training}>
                 <a onClick={e => handleCopyClick(e)}><span><MdCopyAll /></span></a>

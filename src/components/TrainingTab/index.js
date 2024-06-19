@@ -4,6 +4,7 @@ import { Context } from '../../index';
 import axios from "../../api/axios";
 import ReactHammer from 'react-hammerjs';
 import { FaCheck, FaTimes } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const TrainingTab = ({ trainingId }) => {
 
@@ -15,6 +16,7 @@ const TrainingTab = ({ trainingId }) => {
 
     const cardsRef = useRef(null)
     const containerRef = useRef(null)
+    const { t, i18n } = useTranslation()
 
 
 
@@ -163,7 +165,7 @@ const TrainingTab = ({ trainingId }) => {
 
     return (
         <div className={styles.container_form}>
-            <h1>Тренировка</h1>
+            <h1>{t('training.title')}</h1>
             <div className={isLoaded ? `${styles.tinder} ${styles.loaded}` : styles.tinder} ref={containerRef}>
                 <div className={styles.tinder__status}>
                     <span className={`${styles.fa} ${styles.fa_remove}`}><FaTimes /></span>
@@ -182,7 +184,7 @@ const TrainingTab = ({ trainingId }) => {
                     }) :
                         <ReactHammer onTap={event => handleBack()} >
                             <div className={styles.tinder__card}>
-                                <h3 className={styles.lastcard}>Карточки текущей тренировки закончились. Нажмите сюда чтобы вернуться назад к наборам.</h3>
+                                <h3 className={styles.lastcard}>{t('training.ended_card')}</h3>
                             </div>
                         </ReactHammer>
                     }

@@ -1,11 +1,13 @@
 import React from 'react'
 import styles from './styles.module.scss'
+import { useTranslation } from "react-i18next";
 
-const ChatRoom = ({ status }) => {
+const ChatRoom = ({ status, nickname, handleClick, receiverId, chatId}) => {
 
+    const { t, i18n } = useTranslation()
 
     const loadImageComponent = () => {
-        if (status == 'active')
+        if (receiverId == -1)
             return (
                 <div className={`${styles.msg_profile} ${styles.group}`}>
                     <svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -16,20 +18,20 @@ const ChatRoom = ({ status }) => {
             )
         else
             return (
-                <img className={styles.msg_profile} src="../avatar.jpg" alt="" />
+                <img className={styles.msg_profile} src="../Avatar.svg" alt="" />
             )
     }
 
     return (
-        <div className={`${styles.msg} ${status == 'active' ? styles.active : status == 'online' ? styles.online : ''}`}>
+        <div className={`${styles.msg} ${status == 'active' ? styles.active : status == 'online' ? styles.online : ''}`} onClick={() => handleClick(receiverId, chatId)}>
 
             {loadImageComponent()}
 
             <div className={styles.msg_detail}>
-                <div className={styles.msg_username}>Madison Jones</div>
+                <div className={styles.msg_username}>{nickname}</div>
                 <div className={styles.msg_content}>
-                    <span className={styles.msg_message}>Последний раз был онлайн</span>
-                    <span className={styles.msg_date}>20m</span>
+                    <span className={styles.msg_message}>{t('messenger.online_date')}</span>
+                    <span className={styles.msg_date}>???</span>
                 </div>
             </div>
         </div>

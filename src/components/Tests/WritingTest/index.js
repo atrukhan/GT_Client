@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './styles.module.scss'
 import axios from "../../../api/axios";
 import ResultForm from '../ResultForm';
+import { useTranslation } from "react-i18next";
 
 const WritingTest = ({ ids }) => {
 
@@ -14,6 +15,7 @@ const WritingTest = ({ ids }) => {
     const [mistakes, setMistakes] = useState(0)
     const [resultFormVisability, setResultFormVisability] = useState(false)
 
+    const { t, i18n } = useTranslation()
 
     const getTestCards = async (ids) => {
         try {
@@ -96,9 +98,9 @@ const WritingTest = ({ ids }) => {
             </div>
             {cards != null &&
                 <div className={styles.board}>
-                    <h1 className={styles.board_header}>Введите перевод слова: {cards[index].translation}</h1>
+                    <h1 className={styles.board_header}>{t('tests.writing_test')} {cards[index].translation}</h1>
                     <div className={styles.blocks_card}>
-                        <h2 className="text">Ваш ответ:</h2>
+                        <h2 className="text">{t('tests.answer')}</h2>
                         <input type="text" className={styles.input_card} placeholder="" value={answer} onChange={(e) => setAnswer(e.target.value)}/>
                     </div>
                 </div>
@@ -107,13 +109,13 @@ const WritingTest = ({ ids }) => {
                 <div className={styles.footer}>
                     <div className={styles.footer_items_container}>
                         <div className={`${styles.item} ${styles.left}`}>
-                            <button>Пропустить</button>
+                            <button>{t('tests.skip')}</button>
                         </div>
                         <div className={styles.item}></div>
                         <div className={styles.item}></div>
                         <div className={styles.item}></div>
                         <div className={`${styles.item} ${styles.right}`}>
-                            <button className="check-button" onClick={() => checkAnswer()}>Проверить</button>
+                            <button className="check-button" onClick={() => checkAnswer()}>{t('tests.check')}</button>
                         </div>
                     </div>
                 </div>
@@ -126,14 +128,14 @@ const WritingTest = ({ ids }) => {
                                 <img src="https://res.cloudinary.com/nzmai/image/upload/v1605791181/icons/check.png" />
                             </div>
                             <div className={styles.desc_container}>
-                                <span className={styles.motivational_word}>Верно</span>
+                                <span className={styles.motivational_word}>{t('tests.true')}</span>
                             </div>
                         </div>
                         <div className={styles.item}></div>
                         <div className={styles.item}></div>
                         <div className={styles.item}></div>
                         <div className={`${styles.item} ${styles.right}`}>
-                            <button className={styles.continue_button} onClick={() => continueTest()}>Продолжить</button>
+                            <button className={styles.continue_button} onClick={() => continueTest()}>{t('tests.continue')}</button>
                         </div>
                     </div>
                 </div>
@@ -146,14 +148,14 @@ const WritingTest = ({ ids }) => {
                                 <img src="https://res.cloudinary.com/nzmai/image/upload/v1605791181/icons/wrong.png" />
                             </div>
                             <div className={styles.desc_container}>
-                                <span className={styles.motivational_word}>Неверно</span>
+                                <span className={styles.motivational_word}>{t('tests.false')}</span>
                             </div>
                         </div>
                         <div className={styles.item}></div>
                         <div className={styles.item}></div>
                         <div className={styles.item}></div>
                         <div className={`${styles.item} ${styles.right}`}>
-                            <button className={styles.continue_button_fail} onClick={() => continueTest()}>Продолжить</button>
+                            <button className={styles.continue_button_fail} onClick={() => continueTest()}>{t('tests.continue')}</button>
                         </div>
                     </div>
                 </div>

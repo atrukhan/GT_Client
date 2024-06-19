@@ -1,0 +1,89 @@
+{
+    "header": {
+        "auth": "Sign In"
+    },
+    "months": {
+        "jan": "Jan",
+        "feb": "Feb",
+        "mar": "Mar",
+        "apr": "Apr",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "aug": "Aug",
+        "sep": "Sep",
+        "oct": "Oct",
+        "nov": "Nov",
+        "dec": "Dec"
+    },
+    "analytic": {
+        "activity": "Activity",
+        "sets": "Libraries",
+        "cards": "My cards",
+        "completed_tests": "Completed tests",
+        "tests": "Tests",
+        "mistakes_percent": "Mistakes percent",
+        "charts": {
+            "tests": "Tests",
+            "entries": "Entries",
+            "cards": "Cards"
+        }
+    },
+    "aside": {
+        "logout": "Logout",
+        "def_libs": "Default Libs",
+        "my_libs": "My Libs",
+        "tests": "Tests",
+        "messenger": "Messenger",
+        "analytic": "Analytic",
+        "settings": "Settings"
+    },
+    "def_lib_card": {
+        "def_lib": {
+            "cards": "Cards"
+        },
+        "def_libs_tab": {
+            "title": "Default libs"
+        },
+        "def_cards_tab": {
+            "title": "Cards"
+        }
+    },
+    "search": "Search",
+    "messenger": {
+        "sent": "Sent",
+        "online_date": "Last time was online",
+        "add_friend": "Add to friends",
+        "chats": "Friends",
+        "chat": "Chat",
+        "write_anything": "Type something here..."
+    },
+    "tests": {
+        "select_libs": "Select libs",
+        "start": "Start",
+        "skip": "Skip",
+        "check": "Check",
+        "continue": "Continue",
+        "true": "Right",
+        "false": "Incorrect",
+        "choice_test": "Enter the translation of the word:",
+        "writing_test": "Enter the translation of the word:",
+        "listen_card_test": "Listen and type the word:",
+        "listen_sentence_test": "Listen and compose a sentence in English",
+        "answer": "Your answer:",
+        "result": {
+            "title": "Test result",
+            "question": "Question: ",
+            "answer": "Your answer: ",
+            "correct_answer": "Right answer:"
+        },
+        "listening": "Listening",
+        "writing_answer": "Writing answer",
+        "choosing_answer": "Choosing answer",
+        "compilation_sentence": "Sentence compilation"
+    },
+    "training": {
+        "title": "Training",
+        "ended_card": "The cards of the current training session are over. Click here to go back to the sets."
+    }
+}

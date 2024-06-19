@@ -1,5 +1,5 @@
 :root{
-    --text-primary: #212529;
+    /* --text-primary: #212529;
     --text-secondary: #818181;
     --input-border: #dcdcdc;
     --primary-lighten: #6d5bfd;
@@ -13,7 +13,7 @@
     --primary: #5f4cfd;
     --button-primary-bg: #6d5bfd;
     --button-primary-color: #fff;
-    --button-primary-bg-hover: #5f4cfd;
+    --button-primary-bg-hover: #5f4cfd; */
 }
 
 *, :after, :before {

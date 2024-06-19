@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import styles from './styles.module.scss'
 import LibsForm from '../LibsForm'
 import { Context } from '../../../index';
+import { useTranslation } from "react-i18next";
 
 const TestsTab = () => {
 
@@ -9,6 +10,7 @@ const TestsTab = () => {
     const [type, setType] = useState(-1)
 
     const store = useContext(Context)
+    const { t, i18n } = useTranslation()
 
     const startTest = (type, ids) => {
         store.setLibsId(ids)
@@ -47,18 +49,18 @@ const TestsTab = () => {
         <div className={styles.grid}>
             <div className={`${styles.grid_item} ${styles.tiny}`} onClick={() => showLibs(1)}>
                 <div className={styles.tiny_flex}>
-                    <h1 className={styles.title_themes}>Ввод ответа</h1>
+                    <h1 className={styles.title_themes}>{t('tests.writing_answer')}</h1>
                 </div>
             </div>
             <div className={`${styles.grid_item} ${styles.tiny}`} onClick={() => showLibs(2)}>
                 <div className={styles.tiny_flex}>
-                    <h1 className={styles.title_themes}>Выбор ответа</h1>
+                    <h1 className={styles.title_themes}>{t('tests.choosing_answer')}</h1>
                 </div>
             </div>
             <div className={`${styles.grid_item} ${styles.tiny}`} onClick={() => showLibs(3)}>
                 <div className={styles.tiny_flex}>
-                    <h1 className={styles.title_words}>Ввод ответа</h1>
-                    <p className={styles.number_words}>(Аудирование)</p>
+                    <h1 className={styles.title_words}>{t('tests.writing_answer')}</h1>
+                    <p className={styles.number_words}>({t('tests.listening')})</p>
                 </div>
             </div>
             <div className={`${styles.grid_item} ${styles.regular}`}>
@@ -75,8 +77,8 @@ const TestsTab = () => {
             </div>
             <div className={`${styles.grid_item} ${styles.long}`}  onClick={() => showLibs(4)}>
                 <div className={styles.block_item}>
-                    <h1 className={styles.title_activity}>Составление предложения</h1>
-                    <p className={styles.number_words}>(Аудирование)</p>
+                    <h1 className={styles.title_activity}>{t('tests.compilation_sentence')}</h1>
+                    <p className={styles.number_words}>({t('tests.listening')})</p>
                 </div>
             </div>
             <div className={`${styles.grid_item} ${styles.regular}`}>

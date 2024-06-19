@@ -4,8 +4,15 @@ import styles from './styles.module.scss'
 import 'font-awesome/css/font-awesome.min.css'
 import { Context } from '../../index'
 import { MdDarkMode, MdLightMode, MdMenu, MdClose } from "react-icons/md"
+import { useTranslation } from "react-i18next";
 
 const Header = ({ user }) => {
+
+    const { t, i18n } = useTranslation();
+
+    const changeLanguage = (language) => {
+        i18n.changeLanguage(language);
+    };
 
     const store = useContext(Context)
 
@@ -45,7 +52,7 @@ const Header = ({ user }) => {
                     </div>
                 ) : (
                     <div className={styles.profile}>
-                        <Link to="/auth"><button className={styles.button_avatar}>Войти</button></Link>
+                        <Link to="/auth"><button className={styles.button_avatar}>{t('header.auth')}</button></Link>
                     </div>
                 )}
 

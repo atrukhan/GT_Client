@@ -91,7 +91,8 @@ const UserLibrariesTab = ({handleAddClick}) => {
 
     return (
         <div className={styles.main_wrapper}>
-            <h1>Мои наборы</h1>
+            {/* <h1>Мои наборы</h1> */}
+            <h1>My libraries</h1>
 
             <div className={`${styles.analyse} ${styles.analyse_lib}`}>
 

@@ -161,15 +161,21 @@ const AddLibraryNew = ({ type, visability, lib, handleAddLib, handleEditLib, han
                         <div className={styles.close}>
                             <span><MdClose onClick={() => { handleClose() }} /></span>
                         </div>
-                        <h1>{type === 'Add' ? 'Добавить' : 'Изменить'} набор</h1>
-                        
+                        {/* <h1>{type === 'Add' ? 'Добавить' : 'Изменить'} набор</h1> */}
+                        <h1>{type === 'Add' ? 'Add' : 'Изменить'} library</h1>
                         {(titleDirty && titleError) && <p className={styles.validation_text}>{titleError}</p> || (codeDirty && codeError) && <p className={styles.validation_text}>{codeError}</p>}
-                        <input type="text" onBlur={e => blurHandle(e)} name='title' className={styles.input_library} value={title} placeholder="Название" onChange={e => titleHandler(e)} />
-                        {}
-                        {type === 'Add' && <input type="text" onBlur={e => blurHandle(e)} name='code' className={styles.input_library} value={code} placeholder="Скопировать с помощью кода" onChange={e => codeHandler(e)} />}
+                        {/* <input type="text" onBlur={e => blurHandle(e)} name='title' className={styles.input_library} value={title} placeholder="Название" onChange={e => titleHandler(e)} /> */}
+                        <input type="text" onBlur={e => blurHandle(e)} name='title' className={styles.input_library} value={title} placeholder="Title" onChange={e => titleHandler(e)} />
+                        
+
+                        {/* {type === 'Add' && <input type="text" onBlur={e => blurHandle(e)} name='code' className={styles.input_library} value={code} placeholder="Скопировать с помощью кода" onChange={e => codeHandler(e)} />} */}
+                        {type === 'Add' && <input type="text" onBlur={e => blurHandle(e)} name='code' className={styles.input_library} value={code} placeholder="Copy by code" onChange={e => codeHandler(e)} />}
+                        
                         <div className={styles.block_item}>
                             {type === 'Edit' && <button className={styles.button_addlibrary} onClick={() => { handleDeleteClick() }}>Удалить</button>}
-                            <button disabled={!validation} className={styles.button_addlibrary} onClick={() => { handleBtnClick() }}>{type === 'Add' ? 'Добавить' : 'Изменить'}</button>
+                            {/* <button disabled={!validation} className={styles.button_addlibrary} onClick={() => { handleBtnClick() }}>{type === 'Add' ? 'Добавить' : 'Изменить'}</button> */}
+                            <button disabled={!validation} className={styles.button_addlibrary} onClick={() => { handleBtnClick() }}>{type === 'Add' ? 'Add' : 'Изменить'}</button>
+                       
                         </div>
                     </div>
                 </div>
